@@ -10,6 +10,18 @@ const config = {
   ],
   prefix: "",
   theme: {
+    fontSize: { sm: "0.8rem" },
+    screens: {
+      "2xl": { max: "1535px" },
+
+      xl: { max: "1279px" },
+
+      lg: { max: "1023px" },
+
+      md: { max: "767px" },
+
+      sm: { max: "639px" },
+    },
     container: {
       center: true,
       padding: "2rem",
@@ -18,6 +30,9 @@ const config = {
       },
     },
     extend: {
+      textColor: {
+        primary: "#344054",
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
