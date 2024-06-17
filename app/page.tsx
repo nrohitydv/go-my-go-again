@@ -12,6 +12,7 @@ import React from "react";
 import VendorChart from "@/components/VendorChart";
 import AverageVendorRatingChart from "@/components/VendorRating";
 import SearchField from "@/components/SearchField";
+import { TableDemo } from "@/components/TableContent";
 
 const Home = () => {
   return (
@@ -38,7 +39,7 @@ const Home = () => {
           </Button>
         </div>
       </div>
-      <div className="flex justify-stretch gap-[24px]">
+      <div className="flex justify-stretch gap-[24px] sm:flex-col">
         <div className="">
           <Card>
             <CardContent>
@@ -64,6 +65,7 @@ const Home = () => {
 
         <SearchField />
       </div>
+      <TableDemo />
     </main>
   );
 };
