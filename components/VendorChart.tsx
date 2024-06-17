@@ -23,7 +23,7 @@ const COLORS = ["#E1BEE7", "#CE93D8", "#BA68C8", "#AB47BC", "#9C27B0"];
 
 const VendorChart: React.FC = () => {
   return (
-    <div className="flex flex-col items-center p-2 h-[369px] w-[360px]">
+    <div className="flex flex-col items-center p-2 h-[369px]  sm:w-[360px] w-[410px] overflow-hidden">
       <div className="flex justify-between w-full relative">
         <h2 className="text-lg font-bold mb-4">Vendor breakdown</h2>
 

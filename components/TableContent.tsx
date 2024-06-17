@@ -96,7 +96,7 @@ const vendors: Vendor[] = [
 
 export function TableDemo() {
   return (
-    <div className="border rounded-md">
+    <div className="border rounded-md sm:w-full w-[422px] overflow-hidden">
       <Table>
         <TableHeader>
           <TableRow>

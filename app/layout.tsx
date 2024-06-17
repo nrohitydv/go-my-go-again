@@ -23,6 +23,7 @@ export default function RootLayout({
           <NavBar />
           <div className="flex-1">
             <MobileNav />
+
             <main className="p-4">{children}</main>
           </div>
         </div>

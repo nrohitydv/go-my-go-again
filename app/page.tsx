@@ -14,6 +14,7 @@ import VendorChart from "@/components/VendorChart";
 import AverageVendorRatingChart from "@/components/VendorRating";
 import SearchField from "@/components/SearchField";
 import { TableDemo } from "@/components/TableContent";
+import { CiSearch } from "react-icons/ci";
 
 const Home = () => {
   return (
@@ -73,15 +74,35 @@ const Home = () => {
           <AverageVendorRatingChart />
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex sm:flex-row flex-col justify-between space-y-2">
         <div className="">
           <h2 className="text-slate-700">Vendor moments</h2>
           <p className="text-slate-600">
             Keep tracks of vendors and their security ratings.
           </p>
         </div>
+        <div className="sm:block hidden">
+          <SearchField />
+        </div>
+        <div className="relative w-full block sm:hidden">
+          <div className="relative">
+            <span className="absolute inset-y-0 left-0 flex items-center pl-3">
+              <CiSearch size={20} />
+            </span>
+            <Input
+              type="text"
+              placeholder="Search"
+              className="w-full py-2 pl-10 pr-4 border rounded "
+            />
+          </div>
+        </div>
 
-        <SearchField />
+        <div className="block sm:hidden">
+          <Button className="bg-white text-slate-800 hover:text-blue-900 hover:bg-blue-200 rounded-md gap-2 border w-full">
+            <ListFilter />
+            Edit Filters
+          </Button>
+        </div>
       </div>
 
       <TableDemo />

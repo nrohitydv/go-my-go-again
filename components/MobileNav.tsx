@@ -28,7 +28,7 @@ const MobileNav = () => {
           </Link>
         </div>
         <Sheet>
-          <SheetTrigger>
+          <SheetTrigger className="mr-2">
             <RxHamburgerMenu size={20} />
           </SheetTrigger>
           <SheetContent>
