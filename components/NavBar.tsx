@@ -10,6 +10,11 @@ import {
   SquareGanttChart,
   UsersRound,
 } from "lucide-react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 import { Separator } from "@/components/ui/separator";
 import { RxCross1 } from "react-icons/rx";
@@ -25,6 +30,7 @@ import {
 } from "@/components/ui/card";
 import Image from "next/image";
 import SearchField from "./SearchField";
+import { Button } from "./ui/button";
 
 const NavBar = () => {
   return (
@@ -113,9 +119,26 @@ const NavBar = () => {
           <CardHeader>
             <CardTitle className="text-md flex justify-between cursor-pointer">
               <h2>New Features available</h2>
-              <p className="text-slate-700">
-                <RxCross1 />
-              </p>
+              <Popover>
+                <PopoverTrigger>
+                  <p className="text-slate-700">
+                    <RxCross1 />
+                  </p>
+                </PopoverTrigger>
+                <PopoverContent>
+                  <p className="text-sm text-slate-600">
+                    Are you sure want to cancel?
+                  </p>
+                  <div className="space-x-2">
+                    <Button className="bg-white text-slate-600 hover:text-blue-700 hover:bg-white hover:underline">
+                      Yes
+                    </Button>
+                    <Button className="bg-white text-slate-600 hover:text-blue-700 hover:bg-white hover:underline ">
+                      No
+                    </Button>
+                  </div>
+                </PopoverContent>
+              </Popover>
             </CardTitle>
             <CardDescription>
               Checkout new dashboard view. Pages now load faster.
@@ -144,8 +167,26 @@ const NavBar = () => {
               <p className="text-slate-600">olivai@untitledui.com</p>
             </div>
           </div>
+
           <div className="cursor-pointer">
-            <LogOut />
+            <Popover>
+              <PopoverTrigger>
+                <LogOut />
+              </PopoverTrigger>
+              <PopoverContent>
+                <p className="text-sm text-slate-600">
+                  Are you sure want to log out?
+                </p>
+                <div className="space-x-2">
+                  <Button className="bg-white text-slate-600 hover:text-blue-700 hover:bg-white hover:underline">
+                    Yes
+                  </Button>
+                  <Button className="bg-white text-slate-600 hover:text-blue-700 hover:bg-white hover:underline ">
+                    No
+                  </Button>
+                </div>
+              </PopoverContent>
+            </Popover>
           </div>
         </div>
       </div>

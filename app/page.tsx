@@ -98,10 +98,15 @@ const Home = () => {
         </div>
 
         <div className="block sm:hidden">
-          <Button className="bg-white text-slate-800 hover:text-blue-900 hover:bg-blue-200 rounded-md gap-2 border w-full">
-            <ListFilter />
-            Edit Filters
-          </Button>
+          <Dialog>
+            <DialogTrigger className="w-full">
+              <Button className="bg-white text-slate-800 hover:text-blue-900 hover:bg-blue-200 rounded-md gap-2 border w-full">
+                <ListFilter />
+                Edit Filters
+              </Button>
+            </DialogTrigger>
+            <DialogContent>Filter content here!!</DialogContent>
+          </Dialog>
         </div>
       </div>
 
