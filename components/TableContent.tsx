@@ -1,14 +1,14 @@
 import {
   Table,
   TableBody,
-  TableCaption,
-  TableCell,
-  TableFooter,
   TableHead,
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
 import { Button } from "./ui/button";
+import { Pencil, Trash2 } from "lucide-react";
 
 type Vendor = {
   id: number;
@@ -96,9 +96,9 @@ const vendors: Vendor[] = [
 
 export function TableDemo() {
   return (
-    <div className="">
+    <div className="border rounded-md">
       <Table>
-        <TableHeader className="border">
+        <TableHeader>
           <TableRow>
             <TableHead className="w-[100px]">Vendor</TableHead>
             <TableHead>Rating</TableHead>
@@ -106,7 +106,7 @@ export function TableDemo() {
             <TableHead className="text-right">categories</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="border">
+        <TableBody className="">
           {vendors.map((vendor) => (
             <tr key={vendor.id} className="border-b border-gray-200">
               <td className="px-4 py-2 flex items-center">
@@ -165,39 +165,36 @@ export function TableDemo() {
                 )}
               </td>
               <td className="px-4 py-2 flex justify-end space-x-2">
-                <button className="text-gray-500 hover:text-gray-700">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M17.414 2.586a2 2 0 00-2.828 0L10 7.172 5.414 2.586a2 2 0 00-2.828 2.828L7.172 10l-4.586 4.586a2 2 0 102.828 2.828L10 12.828l4.586 4.586a2 2 0 102.828-2.828L12.828 10l4.586-4.586a2 2 0 000-2.828z" />
-                  </svg>
+                <button className="text-gray-500 hover:text-gray-700 h-[40px] w-[40px]">
+                  <Trash2 />
                 </button>
                 <button className="text-gray-500 hover:text-gray-700">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-5 w-5"
-                    viewBox="0 0 20 20"
-                    fill="currentColor"
-                  >
-                    <path d="M6 2a1 1 0 00-1 1v1H3a1 1 0 000 2h1v11a2 2 0 002 2h8a2 2 0 002-2V6h1a1 1 0 100-2h-2V3a1 1 0 00-1-1H6zm2 2V3h4v1H8zm-1 2v10h6V6H7z" />
-                  </svg>
+                  <Pencil />
                 </button>
               </td>
             </tr>
           ))}
         </TableBody>
       </Table>
-      <div className="flex justify-between mt-2 items-center">
-        <Button className="bg-white text-slate-600 hover:text-blue-800 hover:bg-white border rounded-md ml-3">
-          Previous
-        </Button>
-        <p className="text-sm text-slate-600">Page 1 of 10</p>
-        <Button className="bg-white text-slate-600 hover:text-blue-800 hover:bg-white border rounded-md mr-3">
-          Next
-        </Button>
+      <div className="flex justify-between items-center  border-t p-2">
+        <Dialog>
+          <DialogTrigger>
+            <Button className="bg-white text-slate-600 hover:text-blue-800 hover:bg-white border rounded-md ml-3">
+              Previous
+            </Button>
+          </DialogTrigger>
+          <DialogContent>No previous page found!!!</DialogContent>
+        </Dialog>
+
+        <p className="text-sm text-slate-600">Page 1 of 1</p>
+        <Dialog>
+          <DialogTrigger>
+            <Button className="bg-white text-slate-600 hover:text-blue-800 hover:bg-white border rounded-md mr-3">
+              Next
+            </Button>
+          </DialogTrigger>
+          <DialogContent>No next page found!!!</DialogContent>
+        </Dialog>
       </div>
     </div>
   );

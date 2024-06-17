@@ -4,6 +4,12 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 const data = [
   { name: "0-20", value: 20 },
@@ -20,12 +26,13 @@ const VendorChart: React.FC = () => {
     <div className="flex flex-col items-center p-2 h-[369px] w-[360px]">
       <div className="flex justify-between w-full relative">
         <h2 className="text-lg font-bold mb-4">Vendor breakdown</h2>
-        <div className="relative group">
-          <BsThreeDotsVertical />
-          <div className="absolute right-0 mt-2 p-2 w-24 bg-blue-500 text-white text-sm rounded opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-            Edit
-          </div>
-        </div>
+
+        <Dialog>
+          <DialogTrigger>
+            <BsThreeDotsVertical />
+          </DialogTrigger>
+          <DialogContent>Edit chart!!</DialogContent>
+        </Dialog>
       </div>
 
       <div className="flex">
@@ -64,9 +71,22 @@ const VendorChart: React.FC = () => {
         </div>
       </div>
       <Separator orientation="horizontal" />
-      <Button className="mt-5 ml-[200px] bg-white text-slate-700 text-sm border border-slate-200 rounded hover:bg-purple-300">
-        View full report
-      </Button>
+      <Popover>
+        <PopoverTrigger>
+          <Button className="mt-5 ml-[200px] bg-white text-slate-700 text-sm border border-slate-200 rounded hover:bg-purple-300">
+            View full report
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent>
+          {data.map((entry, id) => (
+            <ul key={id}>
+              <li className="flex items-center justify-center">
+                <span>{entry.name}</span>
+              </li>
+            </ul>
+          ))}
+        </PopoverContent>
+      </Popover>
     </div>
   );
 };

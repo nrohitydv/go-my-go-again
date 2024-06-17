@@ -3,6 +3,8 @@ import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { LineChart, Line, CartesianGrid, Tooltip, Legend } from "recharts";
 import { XAxis, YAxis } from "recharts";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
 const data = [
   { name: "Jan", yourRating: 65, industryAverage: 50 },
   { name: "Feb", yourRating: 66, industryAverage: 51 },
@@ -19,18 +21,23 @@ const data = [
 ];
 const AverageVendorRatingChart: React.FC = () => {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col  sm:w-[680px] h-[369px] w-[420px] ">
       <div className="flex justify-between mt-2">
-        <h2 className="text-lg font-bold mb-4 items-start">
+        <h2 className="text-lg font-bold mb-4 items-start ml-[24px] ">
           Average vendor rating
         </h2>
-        <BsThreeDotsVertical />
+        <Dialog>
+          <DialogTrigger>
+            <BsThreeDotsVertical />
+          </DialogTrigger>
+          <DialogContent>Edit chart!!</DialogContent>
+        </Dialog>{" "}
       </div>
 
-      <p className="text-sm text-gray-500 mb-6">
+      <p className="text-sm text-gray-500 mb-6 ml-[24px]">
         Track how your rating compares to your industry average.
       </p>
-      <LineChart width={600} height={279} data={data}>
+      <LineChart width={670} height={249} data={data} className="">
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
         <YAxis />

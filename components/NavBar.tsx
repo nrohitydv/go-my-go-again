@@ -28,7 +28,7 @@ import SearchField from "./SearchField";
 
 const NavBar = () => {
   return (
-    <aside className="w-[300px] ml-4 block sm:hidden border-r">
+    <aside className="w-[300px] ml-4  hidden sm:block border-r">
       <div className="flex flex-col justify-start gap-[20px] mt-4">
         <div className="inline-flex gap-1">
           <div className="">
@@ -109,7 +109,7 @@ const NavBar = () => {
           </div>
         </ul>
 
-        <Card className="w-[280px]">
+        <Card className="w-[260px]">
           <CardHeader>
             <CardTitle className="text-md flex justify-between cursor-pointer">
               <h2>New Features available</h2>

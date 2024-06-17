@@ -15,7 +15,7 @@ import { RxHamburgerMenu } from "react-icons/rx";
 
 const MobileNav = () => {
   return (
-    <div className="sm:block hidden m-3">
+    <div className="block sm:hidden m-3">
       <div className="flex justify-between ">
         <div className="inline-flex gap-1">
           <div className="">
