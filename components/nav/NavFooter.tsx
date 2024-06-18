@@ -25,7 +25,7 @@ const NavFooter = () => {
       <Card className="w-[260px]">
         <CardHeader>
           <CardTitle className="text-md flex justify-between cursor-pointer">
-            <h2>New Features available</h2>
+            <p className="text">New Features available</p>
             <Popover>
               <PopoverTrigger>
                 <p className="text-slate-700">
@@ -62,7 +62,7 @@ const NavFooter = () => {
         </CardFooter>
       </Card>
       <Separator orientation="horizontal" />
-      <div className="flex justify-around">
+      <div className="flex justify-around mt-2">
         <div className="flex items-center justify-center space-x-2">
           <div className="">
             <Avatar>

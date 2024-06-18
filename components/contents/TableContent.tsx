@@ -11,7 +11,7 @@ import { Button } from "../ui/button";
 import { Pencil, Trash2 } from "lucide-react";
 import { vendors } from "@/constants";
 
-export function TableDemo() {
+export function TableChart() {
   return (
     <div className="border rounded-md sm:w-full w-[422px] overflow-hidden">
       <Table>
@@ -81,16 +81,26 @@ export function TableDemo() {
                   <span className="text-red-500">Inactive</span>
                 )}
               </td>
-              <td className="px-4 py-2 flex justify-end space-x-2">
-                <button className="text-gray-500 hover:text-gray-700 h-[40px] w-[40px]">
-                  <Trash2 />
-                </button>
-                <button className="text-gray-500 hover:text-gray-700">
-                  <Pencil />
-                </button>
+              <td className="px-4 py-2 flex justify-end space-x-3">
+                <Dialog>
+                  <DialogTrigger className="text-slate-600">
+                    <Pencil size={20} />
+                  </DialogTrigger>
+                  <DialogContent className="text-sm text-slate-500">
+                    Can&apos;t edit this data!!!
+                  </DialogContent>
+                </Dialog>
+                <Dialog>
+                  <DialogTrigger className="text-slate-600">
+                    <Trash2 size={20} />
+                  </DialogTrigger>
+                  <DialogContent className="text-sm text-slate-500">
+                    Can&apos;t delete this data!!!
+                  </DialogContent>
+                </Dialog>
               </td>
             </tr>
-          ))}
+          ))}{" "}
         </TableBody>
       </Table>
       <div className="flex justify-between items-center  border-t p-2">

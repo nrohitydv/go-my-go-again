@@ -14,18 +14,19 @@ import React, { useState } from "react";
 import VendorChart from "@/components/contents/VendorChart";
 import AverageVendorRatingChart from "@/components/contents/VendorRating";
 import SearchField from "@/components/SearchField";
-import { TableDemo } from "@/components/contents/TableContent";
+import { TableChart } from "@/components/contents/TableContent";
 import { CiSearch } from "react-icons/ci";
+import SearchPopUp from "@/components/SearchPopUp";
 
 const Home = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
+  // const [isExpanded, setIsExpanded] = useState(false);
 
-  const handleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
+  // const handleExpand = () => {
+  //   setIsExpanded(!isExpanded);
+  // };
   return (
     <main className="space-y-5 ">
-      <div className="flex sm:flex-row flex-col justify-between">
+      <div className="flex sm:flex-row flex-col justify-between items-center">
         <h1 className="font-bold text-[32px]">Organizational overview</h1>
         <div className="flex gap-[12px]">
           {/* <div className="relative hidden sm:block">
@@ -41,10 +42,11 @@ const Home = () => {
               }`}
             />
           </div> */}
-          <div className="relative hidden sm:block ">
-            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500" />
+          {/* <div className="relative hidden sm:block ">
+            <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 " />
             <Input className="pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border focus:w-48 transition-all duration-300 ease-in-out" />
-          </div>
+          </div> */}
+          <SearchPopUp />
           <div className="hidden sm:block">
             <Dialog>
               <DialogTrigger>
@@ -129,7 +131,7 @@ const Home = () => {
         </div>
       </div>
 
-      <TableDemo />
+      <TableChart />
     </main>
   );
 };
