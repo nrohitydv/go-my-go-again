@@ -19,17 +19,17 @@ import { CiSearch } from "react-icons/ci";
 import SearchPopUp from "@/components/SearchPopUp";
 
 const Home = () => {
-  // const [isExpanded, setIsExpanded] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  // const handleExpand = () => {
-  //   setIsExpanded(!isExpanded);
-  // };
+  const handleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
     <main className="space-y-5 ">
       <div className="flex sm:flex-row flex-col justify-between items-center">
         <h1 className="font-bold text-[32px]">Organizational overview</h1>
         <div className="flex gap-[12px]">
-          {/* <div className="relative hidden sm:block">
+          <div className="relative hidden sm:block">
             <button
               onClick={handleExpand}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 focus:outline-none"
@@ -41,12 +41,12 @@ const Home = () => {
                 isExpanded ? "w-48 border" : "w-0"
               }`}
             />
-          </div> */}
+          </div>
           {/* <div className="relative hidden sm:block ">
             <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 " />
             <Input className="pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border focus:w-48 transition-all duration-300 ease-in-out" />
-          </div> */}
-          <SearchPopUp />
+          </div>
+          {/* <SearchPopUp /> */}
           <div className="hidden sm:block">
             <Dialog>
               <DialogTrigger>
