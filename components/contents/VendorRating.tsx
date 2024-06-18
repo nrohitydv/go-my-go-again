@@ -4,21 +4,8 @@ import { BsThreeDotsVertical } from "react-icons/bs";
 import { LineChart, Line, CartesianGrid, Tooltip, Legend } from "recharts";
 import { XAxis, YAxis } from "recharts";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { data } from "@/constants";
 
-const data = [
-  { name: "Jan", yourRating: 65, industryAverage: 50 },
-  { name: "Feb", yourRating: 66, industryAverage: 51 },
-  { name: "Mar", yourRating: 67, industryAverage: 52 },
-  { name: "Apr", yourRating: 66, industryAverage: 53 },
-  { name: "May", yourRating: 68, industryAverage: 54 },
-  { name: "Jun", yourRating: 69, industryAverage: 55 },
-  { name: "Jul", yourRating: 70, industryAverage: 56 },
-  { name: "Aug", yourRating: 71, industryAverage: 57 },
-  { name: "Sep", yourRating: 72, industryAverage: 58 },
-  { name: "Oct", yourRating: 73, industryAverage: 59 },
-  { name: "Nov", yourRating: 74, industryAverage: 60 },
-  { name: "Dec", yourRating: 75, industryAverage: 61 },
-];
 const AverageVendorRatingChart: React.FC = () => {
   return (
     <div className="flex flex-col  sm:w-[680px] h-[369px] w-[410px] overflow-hidden ">

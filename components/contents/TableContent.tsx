@@ -7,92 +7,9 @@ import {
 } from "@/components/ui/table";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { Pencil, Trash2 } from "lucide-react";
-
-type Vendor = {
-  id: number;
-  name: string;
-  url: string;
-  rating: number;
-  ratingChange: number;
-  lastAssessed: string;
-  status: boolean;
-  categories: string[];
-};
-
-const vendors: Vendor[] = [
-  {
-    id: 1,
-    name: "Catalog",
-    url: "catalogapp.io",
-    rating: 60,
-    ratingChange: 5,
-    lastAssessed: "22 Jan 2022",
-    categories: ["Customer data", "Admin", "+4"],
-    status: true,
-  },
-  {
-    id: 2,
-    name: "Capsule",
-    url: "getcapsule.com",
-    rating: 72,
-    ratingChange: -4,
-    lastAssessed: "20 Jan 2022",
-    categories: ["Business data", "Admin", "+4"],
-    status: true,
-  },
-  {
-    id: 3,
-    name: "Command+R",
-    url: "cmdr.ai",
-    rating: 78,
-    ratingChange: 6,
-    lastAssessed: "24 Jan 2022",
-    categories: ["Customer data", "Financials"],
-    status: true,
-  },
-  {
-    id: 4,
-    name: "Hourglass",
-    url: "hourglass.app",
-    rating: 38,
-    ratingChange: 8,
-    lastAssessed: "26 Jan 2022",
-    categories: ["Database access", "Admin"],
-    status: true,
-  },
-  {
-    id: 5,
-    name: "Layers",
-    url: "getlayers.io",
-    rating: 42,
-    ratingChange: -1,
-    lastAssessed: "18 Jan 2022",
-    categories: ["Salesforce", "Admin", "+4"],
-    status: true,
-  },
-  {
-    id: 6,
-    name: "Quotient",
-    url: "quotient.co",
-    rating: 66,
-    ratingChange: -6,
-    lastAssessed: "28 Jan 2022",
-    categories: ["Business data", "Admin", "+4"],
-    status: true,
-  },
-  {
-    id: 7,
-    name: "Sisyphus",
-    url: "sisyphus.com",
-    rating: 91,
-    ratingChange: 2,
-    lastAssessed: "16 Jan 2022",
-    categories: ["Customer data", "Financials"],
-    status: false,
-  },
-];
+import { vendors } from "@/constants";
 
 export function TableDemo() {
   return (
@@ -106,7 +23,7 @@ export function TableDemo() {
             <TableHead className="text-right">categories</TableHead>
           </TableRow>
         </TableHeader>
-        <TableBody className="">
+        <TableBody>
           {vendors.map((vendor) => (
             <tr key={vendor.id} className="border-b border-gray-200">
               <td className="px-4 py-2 flex items-center">

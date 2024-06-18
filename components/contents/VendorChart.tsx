@@ -2,8 +2,8 @@
 import React from "react";
 import { BsThreeDotsVertical } from "react-icons/bs";
 import { PieChart, Pie, Cell, Tooltip } from "recharts";
-import { Button } from "./ui/button";
-import { Separator } from "./ui/separator";
+import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
 import {
   Popover,
   PopoverContent,
