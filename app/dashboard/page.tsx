@@ -15,38 +15,14 @@ import LineChartComponent from "@/components/contents/LineChart";
 import { Badge } from "@/components/ui/badge";
 import Image from "next/image";
 import { members } from "@/constants";
+import ButtonGroup from "@/components/dashboard_content/ButtonGroup";
 
 const DashboardPage = () => {
   return (
-    <main className="space-y-[16px]">
-      <h1 className=" h-[28px] font-bold">Dashboard</h1>
+    <main className="space-y-[16px] overflow-hidden">
+      <h1 className=" h-[28px] font-semibold text-[#101828]">Dashboard</h1>
       <div className="flex sm:justify-between gap-[12px] ">
-        <div className="border rounded-md sm:w-[340px] w-[225px] divide-x">
-          <Button className="bg-white text-slate-600  hover:bg-slate-200 ">
-            <p>
-              <span className="hidden sm:block"> 12 months</span>
-              <span className="block sm:hidden">12m</span>
-            </p>
-          </Button>
-          <Button className="bg-white text-slate-600  hover:bg-slate-200 ">
-            <p>
-              <span className="hidden sm:block">30 days</span>
-              <span className="block sm:hidden">30d</span>
-            </p>
-          </Button>
-          <Button className="bg-white text-slate-600  hover:bg-slate-200 ">
-            <p>
-              <span className="hidden sm:block">7 days</span>
-              <span className="block sm:hidden">7d</span>
-            </p>
-          </Button>
-          <Button className="bg-white text-slate-600  hover:bg-slate-200 ">
-            <p>
-              <span className="hidden sm:block">24 hours</span>
-              <span className="block sm:hidden">24h</span>
-            </p>
-          </Button>
-        </div>
+        <ButtonGroup />
         <div className="inline-flex gap-[12px]">
           <div className="hidden sm:block">
             <DatePicker />
@@ -119,12 +95,16 @@ const DashboardPage = () => {
           </div>
         </div>
       </div>
-      <h5 className="text-slate-800 font-bold border-b p-2">
-        Start creating content
-      </h5>
-      <div className="flex">
+      <div className="flex justify-between border-b p-2">
+        <h5 className="text-slate-800 font-bold ">Start creating content</h5>
+        <p className="text-slate-400 cursor-pointer">
+          <EllipsisVertical size={20} />
+        </p>
+      </div>
+
+      <div className="flex sm:flex-row flex-col">
         <div className="space-y-[20px]">
-          <div className="flex gap-[24px]">
+          <div className="flex sm:flex-row flex-col gap-[24px]">
             <div className="flex gap-2 border rounded-md w-[400px] h-[86px] items-center p-[24px] cursor-pointer">
               <div className="">
                 <p className="bg-[#F4EBFF] rounded-full p-1">
@@ -142,7 +122,7 @@ const DashboardPage = () => {
             <div className="flex gap-2 border rounded-md w-[400px] h-[86px] items-center p-[24px] cursor-pointer">
               <div className="">
                 <p className="bg-[#F4EBFF] rounded-full p-1">
-                  <Pencil color="#6659a6" />{" "}
+                  <Pencil color="#6659a6" />
                 </p>
               </div>
 
@@ -155,13 +135,13 @@ const DashboardPage = () => {
             </div>
           </div>
           <div className="">
-            <div className="border-b w-[824px] flex justify-between ">
+            <div className="border-b sm:w-[824px] w-[400px] flex justify-between ">
               <h6 className="text-slate-800 font-bold mb-[20px]">
                 Start creating content
               </h6>
               <EllipsisVertical size={20} />
             </div>
-            <div className="flex gap-[24px] mt-[24px]">
+            <div className="flex sm:flex-row flex-col gap-[24px] mt-[24px]">
               <div className="">
                 <Image src="/blog1.png" alt="" width={400} height={240} />
                 <div className="space-y-2 mt-2">
@@ -216,11 +196,14 @@ const DashboardPage = () => {
             </div>
           </div>
         </div>
-        <ul className="ml-[32px]">
+        <ul className="ml-[32px] sm:mt-0 mt-[32px]">
           <p className="text-sm/medium text-[#475467]">Top members</p>
-          <div className="mt-[24px]">
+          <div className="mt-[24px] ">
             {members.map((member) => (
-              <li key={member.name} className="flex mt-[24px] gap-[12px]">
+              <li
+                key={member.name}
+                className="flex mt-[24px] gap-[12px] cursor-pointer"
+              >
                 <div className="">
                   <Image
                     src={member.profilePic}

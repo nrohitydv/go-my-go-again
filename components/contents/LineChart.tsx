@@ -6,7 +6,7 @@ import { data } from "@/constants";
 
 const LineChartComponent = () => {
   return (
-    <div className="flex">
+    <div className="flex sm:w-[552px] w-[400px]">
       <LineChart width={552} height={240} data={data} className="flex-1">
         <CartesianGrid strokeDasharray="3 3" />
         <XAxis dataKey="name" />
