@@ -1,46 +1,60 @@
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import React, { useState, useRef, useEffect } from "react";
 import { Input } from "./ui/input";
 import { Search } from "lucide-react";
-import {
-  HoverCard,
-  HoverCardContent,
-  HoverCardTrigger,
-} from "@/components/ui/hover-card";
 
-const SearchPopUp = () => {
+const SearchInput: React.FC = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const handleExpand = () => {
+    setIsExpanded(true);
+  };
+
+  const handleCollapse = () => {
+    setIsExpanded(false);
+  };
+
+  const handleClickOutside = (event: MouseEvent) => {
+    if (
+      containerRef.current &&
+      !containerRef.current.contains(event.target as Node)
+    ) {
+      handleCollapse();
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
   return (
-    <HoverCard>
-      <HoverCardTrigger>
-        <p className="text-slate-600 mt-2">
-          <Search />
-        </p>
-      </HoverCardTrigger>
-      <HoverCardContent className="border-none">
-        <div className="relative hidden sm:block ">
-          <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 " />
-          <Input className="pl-10 pr-2 py-1  rounded-md border " />
-        </div>
-      </HoverCardContent>
-    </HoverCard>
-
-    // <DropdownMenu>
-    //   <DropdownMenuTrigger>
-    //     <p className="text-slate-600">
-    //       <Search />
-    //     </p>
-    //   </DropdownMenuTrigger>
-    //   <DropdownMenuContent>
-    //     <div className="relative hidden sm:block ">
-    //       <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 " />
-    //       <Input className="pl-10 pr-2 py-1  rounded-md border-0 " />
-    //     </div>
-    //   </DropdownMenuContent>
-    // </DropdownMenu>
+    <div className="relative hidden sm:block" ref={containerRef}>
+      <button
+        onClick={handleExpand}
+        className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 focus:outline-none"
+      >
+        <Search />
+      </button>
+      <div
+        className={`absolute inset-0 pl-10 pr-2 py-1 cursor-pointer ${
+          isExpanded ? "w-48" : "w-0"
+        }`}
+      >
+        <Input
+          onClick={(event) => {
+            event.stopPropagation();
+            handleExpand();
+          }}
+          className={`pl-10 pr-2 py-1 w-full rounded-md border-0 focus:border transition-all duration-300 ease-in-out ${
+            isExpanded ? "border" : "w-0"
+          }`}
+        />
+      </div>
+    </div>
   );
 };
 
-export default SearchPopUp;
+export default SearchInput;

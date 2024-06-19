@@ -10,26 +10,44 @@ import {
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import VendorChart from "@/components/contents/VendorChart";
 import AverageVendorRatingChart from "@/components/contents/VendorRating";
 import SearchField from "@/components/SearchField";
 import { TableChart } from "@/components/contents/TableContent";
 import { CiSearch } from "react-icons/ci";
-import SearchPopUp from "@/components/SearchPopUp";
+import SearchInput from "@/components/SearchPopUp";
 
 const Home = () => {
   const [isExpanded, setIsExpanded] = useState(false);
+  // const containerRef = useRef<HTMLDivElement>(null);
 
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+
+  // const handleClickOutside = (event: MouseEvent) => {
+  //   if (
+  //     containerRef.current &&
+  //     !containerRef.current.contains(event.target as Node)
+  //   ) {
+  //     setIsExpanded(false);
+  //   }
+  // };
+
+  // useEffect(() => {
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, []);
   return (
     <main className="space-y-5 ">
       <div className="flex sm:flex-row flex-col justify-between items-center">
         <h1 className="font-bold text-[32px]">Organizational overview</h1>
         <div className="flex gap-[12px]">
-          <div className="relative hidden sm:block">
+          {/* <SearchInput /> */}
+          {/* <div className="relative hidden sm:block" ref={containerRef}>
             <button
               onClick={handleExpand}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 focus:outline-none"
@@ -37,16 +55,34 @@ const Home = () => {
               <Search />
             </button>
             <Input
+              onClick={(event) => {
+                event.stopPropagation();
+                handleExpand();
+              }}
               className={`pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border transition-all duration-300 ease-in-out ${
                 isExpanded ? "w-48 border" : "w-0"
               }`}
             />
-          </div>
+          </div> */}
           {/* <div className="relative hidden sm:block ">
             <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 " />
             <Input className="pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border focus:w-48 transition-all duration-300 ease-in-out" />
+          </div> */}
+          <div className="relative hidden sm:block">
+            <button
+              onClick={handleExpand}
+              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 focus:outline-none"
+            >
+              <Search />
+            </button>
+
+            <Input
+              onClick={handleExpand}
+              className={`pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border transition-all duration-300 ease-in-out ${
+                isExpanded ? "w-48 border" : "w-0 border-none"
+              }`}
+            />
           </div>
-          {/* <SearchPopUp /> */}
           <div className="hidden sm:block">
             <Dialog>
               <DialogTrigger>
