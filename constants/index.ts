@@ -155,3 +155,56 @@ export const data = [
   { name: "Nov", yourRating: 74, industryAverage: 60 },
   { name: "Dec", yourRating: 75, industryAverage: 61 },
 ];
+
+export const members = [
+  {
+    name: "Phoenix Baker",
+    memberSince: "Feb 2022",
+    profilePic: "/Avatar 2.png",
+  },
+  {
+    name: "Lana Steiner",
+    memberSince: "Jan 2022",
+    profilePic: "/Avatar (1).png",
+  },
+  {
+    name: "Demi Wilkinson",
+    memberSince: "Mar 2022",
+    profilePic: "/Avatar (2).png",
+  },
+  {
+    name: "Candice Wu",
+    memberSince: "Feb 2022",
+    profilePic: "/Avatar (3).png",
+  },
+  {
+    name: "Natali Craig",
+    memberSince: "Mar 2022",
+    profilePic: "/Avatar (4).png",
+  },
+  {
+    name: "Orlando Diggs",
+    memberSince: "Apr 2022",
+    profilePic: "/Avatar (5).png",
+  },
+  {
+    name: "Drew Cano",
+    memberSince: "Apr 2022",
+    profilePic: "/Avatar (6).png",
+  },
+  {
+    name: "Kate Morrison",
+    memberSince: "Jan 2022",
+    profilePic: "/Avatar (7).png",
+  },
+  {
+    name: "Koray Okumus",
+    memberSince: "Feb 2022",
+    profilePic: "/Avatar (8).png",
+  },
+  {
+    name: "Ava Wright",
+    memberSince: "Mar 2022",
+    profilePic: "/Avatar (9).png",
+  },
+];

@@ -16,37 +16,19 @@ import AverageVendorRatingChart from "@/components/contents/VendorRating";
 import SearchField from "@/components/SearchField";
 import { TableChart } from "@/components/contents/TableContent";
 import { CiSearch } from "react-icons/ci";
-import SearchInput from "@/components/SearchPopUp";
 
 const Home = () => {
   const [isExpanded, setIsExpanded] = useState(false);
-  // const containerRef = useRef<HTMLDivElement>(null);
 
   const handleExpand = () => {
     setIsExpanded(!isExpanded);
   };
 
-  // const handleClickOutside = (event: MouseEvent) => {
-  //   if (
-  //     containerRef.current &&
-  //     !containerRef.current.contains(event.target as Node)
-  //   ) {
-  //     setIsExpanded(false);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   document.addEventListener("mousedown", handleClickOutside);
-  //   return () => {
-  //     document.removeEventListener("mousedown", handleClickOutside);
-  //   };
-  // }, []);
   return (
     <main className="space-y-5 ">
       <div className="flex sm:flex-row flex-col justify-between items-center">
         <h1 className="font-bold text-[32px]">Organizational overview</h1>
         <div className="flex gap-[12px]">
-          {/* <SearchInput /> */}
           {/* <div className="relative hidden sm:block" ref={containerRef}>
             <button
               onClick={handleExpand}
@@ -64,11 +46,14 @@ const Home = () => {
               }`}
             />
           </div> */}
-          {/* <div className="relative hidden sm:block ">
+          <div className="relative hidden sm:block ">
             <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 " />
-            <Input className="pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border focus:w-48 transition-all duration-300 ease-in-out" />
-          </div> */}
-          <div className="relative hidden sm:block">
+
+            <Input
+              className={`pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border focus:w-48 transition-all duration-300 ease-in-out`}
+            />
+          </div>
+          {/* <div className="relative hidden sm:block">
             <button
               onClick={handleExpand}
               className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 focus:outline-none"
@@ -77,12 +62,11 @@ const Home = () => {
             </button>
 
             <Input
-              onClick={handleExpand}
               className={`pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border transition-all duration-300 ease-in-out ${
                 isExpanded ? "w-48 border" : "w-0 border-none"
               }`}
             />
-          </div>
+          </div> */}
           <div className="hidden sm:block">
             <Dialog>
               <DialogTrigger>
