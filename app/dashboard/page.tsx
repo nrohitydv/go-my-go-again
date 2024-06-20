@@ -105,21 +105,75 @@ const DashboardPage = () => {
       <div className="flex sm:flex-row flex-col">
         <div className="space-y-[20px]">
           <div className="flex sm:flex-row flex-col gap-[24px]">
-            <div className="flex gap-2 border rounded-md w-[400px] h-[86px] items-center p-[24px] cursor-pointer">
-              <div className="">
-                <p className="bg-[#F4EBFF] rounded-full p-1">
-                  <UserPlus color="#6659a6" />
-                </p>
-              </div>
+            <Dialog>
+              <DialogTrigger>
+                <div className="flex gap-2 border rounded-md w-[400px] h-[86px] items-center p-[24px] cursor-pointer">
+                  <div className="">
+                    <p className="bg-[#F4EBFF] rounded-full p-1">
+                      <UserPlus color="#6659a6" />
+                    </p>
+                  </div>
 
-              <div className="">
-                <p className="text-slate-700">Create your first member</p>
-                <p className="text-sm text-slate-600">
-                  Add yourself or import from csv
-                </p>
-              </div>
-            </div>
-            <div className="flex gap-2 border rounded-md w-[400px] h-[86px] items-center p-[24px] cursor-pointer">
+                  <div className="">
+                    <p className="text-slate-700">Create your first member</p>
+                    <p className="text-sm text-slate-600">
+                      Add yourself or import from csv
+                    </p>
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent>
+                <label htmlFor="name">Enter name</label>
+                <input
+                  type="text"
+                  id="name"
+                  className="border w-[400px] p-2 rounded-md"
+                />
+                <label htmlFor="date">Enter joined date</label>
+                <input
+                  type="date"
+                  id="date"
+                  className="border w-[400px] p-2 rounded-md"
+                />
+                <p>Or enter csv</p>
+                <label htmlFor="picture">CSV file</label>
+                <input type="file" id="picture" />
+                <button className="border rounded-md p-2 w-[200px] hover:bg-slate-300 ml-[120px]">
+                  Submit
+                </button>
+              </DialogContent>
+            </Dialog>
+            <Dialog>
+              <DialogTrigger>
+                <div className="flex gap-2 border rounded-md w-[400px] h-[86px] items-center p-[24px] cursor-pointer">
+                  <div className="">
+                    <p className="bg-[#F4EBFF] rounded-full p-1">
+                      <Pencil color="#6659a6" />
+                    </p>
+                  </div>
+
+                  <div className="">
+                    <p className=" flex justify-start text-slate-700">
+                      Create a new post
+                    </p>
+                    <p className="text-sm text-slate-600">
+                      Dive into the editor and start creating
+                    </p>
+                  </div>
+                </div>
+              </DialogTrigger>
+              <DialogContent>
+                <label htmlFor="picture">Choose photo</label>
+                <input type="file" id="picture" />
+                <label htmlFor="textarea">Write caption</label>
+                <textarea className="border rounded-md" />
+                <button className="border rounded-md p-2 w-[200px] hover:bg-slate-300 ml-[120px]">
+                  Submit
+                </button>
+              </DialogContent>
+            </Dialog>
+
+            {/* <div className="flex gap-2 border rounded-md w-[400px] h-[86px] items-center p-[24px] cursor-pointer">
               <div className="">
                 <p className="bg-[#F4EBFF] rounded-full p-1">
                   <Pencil color="#6659a6" />
@@ -132,12 +186,12 @@ const DashboardPage = () => {
                   Dive into the editor and start creating
                 </p>
               </div>
-            </div>
+            </div> */}
           </div>
           <div className="">
             <div className="border-b sm:w-[824px] w-[400px] flex justify-between ">
               <h6 className="text-slate-800 font-bold mb-[20px]">
-                Start creating content
+                Recent posts
               </h6>
               <EllipsisVertical size={20} />
             </div>
@@ -146,7 +200,7 @@ const DashboardPage = () => {
                 <Image src="/blog1.png" alt="" width={400} height={240} />
                 <div className="space-y-2 mt-2">
                   <p className="text-sm text-[#6941C6]">
-                    Olivia Rhye • 20 Jan 2022{" "}
+                    Olivia Rhye • 20 Jan 2022
                   </p>
                   <div className="flex justify-between">
                     <p className="text-[#101828]">UX review presentations</p>
