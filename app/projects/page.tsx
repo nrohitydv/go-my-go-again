@@ -16,6 +16,7 @@ interface Project {
 }
 
 const ProjectsPage: React.FC = () => {
+  //Omit in newProject is to store new project without id
   const [newProject, setNewProject] = useState<Omit<Project, "id">>({
     title: "",
     description: "",

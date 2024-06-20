@@ -6,6 +6,15 @@ import React, { FormEvent, useState, ChangeEvent } from "react";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+// import { zodResolver } from "@hookform/resolvers/zod";
+// import { useForm } from "react-hook-form";
+// import { z } from "zod";
+// const taskSchema = z.object({
+//   title: z.string().min(1, "Title is required"),
+//   description: z.string().min(1, "Description requires"),
+//   assignedTo: z.string().min(1, "Name of person Required"),
+//   dueDate: z.string().min(1, "Due date Required"),
+// });
 
 interface Task {
   id: string;
