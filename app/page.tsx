@@ -10,42 +10,17 @@ import {
 } from "lucide-react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
-import React, { useEffect, useRef, useState } from "react";
 import VendorChart from "@/components/contents/VendorChart";
 import AverageVendorRatingChart from "@/components/contents/VendorRating";
 import SearchField from "@/components/SearchField";
 import { TableChart } from "@/components/contents/TableContent";
-import { CiSearch } from "react-icons/ci";
 
 const Home = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-
-  const handleExpand = () => {
-    setIsExpanded(!isExpanded);
-  };
-
   return (
     <main className="space-y-5 ">
       <div className="flex sm:flex-row flex-col justify-between items-center">
         <h1 className="font-bold text-[32px]">Organizational overview</h1>
         <div className="flex gap-[12px]">
-          {/* <div className="relative hidden sm:block" ref={containerRef}>
-            <button
-              onClick={handleExpand}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 focus:outline-none"
-            >
-              <Search />
-            </button>
-            <Input
-              onClick={(event) => {
-                event.stopPropagation();
-                handleExpand();
-              }}
-              className={`pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border transition-all duration-300 ease-in-out ${
-                isExpanded ? "w-48 border" : "w-0"
-              }`}
-            />
-          </div> */}
           <div className="relative hidden sm:block ">
             <Search className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 " />
 
@@ -53,20 +28,7 @@ const Home = () => {
               className={`pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border focus:w-48 transition-all duration-300 ease-in-out`}
             />
           </div>
-          {/* <div className="relative hidden sm:block">
-            <button
-              onClick={handleExpand}
-              className="absolute left-2 top-1/2 transform -translate-y-1/2 text-gray-500 focus:outline-none"
-            >
-              <Search />
-            </button>
 
-            <Input
-              className={`pl-10 pr-2 py-1 w-0 rounded-md border-0 focus:border transition-all duration-300 ease-in-out ${
-                isExpanded ? "w-48 border" : "w-0 border-none"
-              }`}
-            />
-          </div> */}
           <div className="hidden sm:block">
             <Dialog>
               <DialogTrigger>
@@ -128,7 +90,7 @@ const Home = () => {
         <div className="relative w-full block sm:hidden">
           <div className="relative">
             <span className="absolute inset-y-0 left-0 flex items-center pl-3">
-              <CiSearch size={20} />
+              <Search size={20} />
             </span>
             <Input
               type="text"

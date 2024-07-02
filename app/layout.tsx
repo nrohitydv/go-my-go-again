@@ -4,6 +4,8 @@ import "./globals.css";
 import NavBar from "@/components/nav/NavBar";
 import MobileNav from "@/components/nav/MobileNav";
 import { Toaster } from "@/components/ui/toaster";
+import { Provider } from "react-redux";
+import store from "../store/index";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,7 +26,9 @@ export default function RootLayout({
           <div className="flex-1">
             <MobileNav />
 
-            <main className="p-4">{children}</main>
+            <main className="p-4">
+              <Provider store={store}>{children}</Provider>
+            </main>
             <Toaster />
           </div>
         </div>

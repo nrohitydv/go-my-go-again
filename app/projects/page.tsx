@@ -1,64 +1,133 @@
 "use client";
-import React, { useState, ChangeEvent, FormEvent } from "react";
+import React, { useState, useEffect } from "react";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { toast } from "@/components/ui/use-toast";
 import { Textarea } from "@/components/ui/textarea";
-import { Trash2 } from "lucide-react";
+import { Plus, X } from "lucide-react";
+import { Separator } from "@radix-ui/react-separator";
+import { z } from "zod";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
 
-interface Project {
+const formSchema = z.object({
+  title: z.string().min(2, {
+    message: "Title required!!!",
+  }),
+  description: z.string().min(10, { message: "Description required!!!" }),
+  team: z.string().min(2, { message: "Team member name required!!!" }),
+  startDate: z.string().min(2, { message: "Start date required!!!" }),
+  endDate: z.string().min(2, { message: "End date required!!!" }),
+});
+
+export interface Project {
   id: string;
   title: string;
   description: string;
+  team: string;
   startDate: string;
   endDate: string;
 }
 
 const ProjectsPage: React.FC = () => {
-  //Omit in newProject is to store new project without id
-  const [newProject, setNewProject] = useState<Omit<Project, "id">>({
-    title: "",
-    description: "",
-    startDate: "",
-    endDate: "",
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    reset,
+  } = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
   });
-  const [projectList, setProjectList] = useState<Project[]>([]);
 
-  const handleAddProject = (e: FormEvent) => {
-    e.preventDefault();
-    setProjectList((currentProjects) => [
-      ...currentProjects,
-      { id: crypto.randomUUID(), ...newProject },
-    ]);
-    setNewProject({ title: "", description: "", startDate: "", endDate: "" });
-  };
+  const [projectList, setProjectList] = useState<Project[]>(() => {
+    const localValue = localStorage.getItem("ITEMS");
+    if (localValue === null) return [];
+    return JSON.parse(localValue);
+  });
 
-  const handleInputChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { id, value } = e.target;
-    setNewProject((prevProject) => ({ ...prevProject, [id]: value }));
+  useEffect(() => {
+    localStorage.setItem("ITEMS", JSON.stringify(projectList));
+  }, [projectList]);
+
+  const handleAddProject = (data: z.infer<typeof formSchema>) => {
+    const newProject = {
+      id: crypto.randomUUID(),
+      ...data,
+    };
+    const updatedProjectList = [...projectList, newProject];
+    setProjectList(updatedProjectList);
+    reset();
+    toast({
+      description: <p>Form submitted successfully!!!</p>,
+    });
   };
 
   const handleDeleteProject = (id: string) => {
-    setProjectList((currentProjects) => {
-      return currentProjects.filter((project) => project.id !== id);
-    });
+    const updatedProjectList = projectList.filter(
+      (project) => project.id !== id
+    );
+    setProjectList(updatedProjectList);
   };
 
   return (
     <div className="flex justify-center items-center p-6 w-[600px] h-full border rounded-md ml-[200px]">
       <div className="space-y-6 max-w-2xl w-full">
         <h1 className="font-bold text-2xl mb-4">Projects List</h1>
+
+        <ul className="space-y-4">
+          {projectList.length === 0 && "No projects found!!!"}
+          {projectList.map((project) => (
+            <li key={project.id} className="border p-4 rounded-md shadow-md">
+              <div className="flex justify-between items-start">
+                <div>
+                  <p className="font-semibold text-lg text-gray-800">
+                    {project.title}
+                  </p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {project.description}
+                  </p>
+                  <p className="text-sm/md text-blue-400 mt-1">
+                    <span className="text-slate-400 text-sm/md">Team</span> :{" "}
+                    {project.team}
+                  </p>
+                  <div className="flex gap-[20px]">
+                    <div className="flex gap-4">
+                      <p className="text-sm text-slate-500 mt-1">
+                        Start Date: {project.startDate}
+                      </p>
+                      <Separator orientation="vertical" className="border" />
+                      <p className="text-sm text-slate-500  mt-1">
+                        End Date: {project.endDate}
+                      </p>
+                    </div>
+                    <Button className="text-white bg-blue-400 hover:bg-blue-300 px-1 py-1 h-5 mt-1">
+                      <p className="mt-0  p-0">More Details</p>
+                    </Button>
+                  </div>
+                </div>
+                <Button
+                  className="bg-white text-slate-600 hover:bg-white"
+                  onClick={() => handleDeleteProject(project.id)}
+                >
+                  <X />
+                </Button>
+              </div>
+            </li>
+          ))}
+        </ul>
         <Dialog>
-          <DialogTrigger>
-            <Button className="bg-blue-500 text-white hover:bg-blue-600 border py-2 px-4 rounded-md">
-              Add Project
+          <DialogTrigger className="ml-[500px]">
+            <Button className="bg-blue-500 text-white hover:bg-blue-600 border py-2 px-2 rounded-xl">
+              <Plus />
             </Button>
           </DialogTrigger>
           <DialogContent className="space-y-4 p-6 rounded-lg">
-            <form onSubmit={handleAddProject} className="space-y-4">
+            <form
+              onSubmit={handleSubmit(handleAddProject)}
+              className="space-y-4"
+            >
               <div>
                 <Label htmlFor="title" className="block mb-1 text-gray-700">
                   Title
@@ -66,11 +135,12 @@ const ProjectsPage: React.FC = () => {
                 <Input
                   type="text"
                   id="title"
-                  required
                   className="w-full border rounded-md p-2"
-                  value={newProject.title}
-                  onChange={handleInputChange}
+                  {...register("title")}
                 />
+                {errors.title && (
+                  <p className="text-red-500">{errors.title.message}</p>
+                )}
               </div>
               <div>
                 <Label
@@ -82,9 +152,25 @@ const ProjectsPage: React.FC = () => {
                 <Textarea
                   id="description"
                   className="w-full border rounded-md p-2"
-                  value={newProject.description}
-                  onChange={handleInputChange}
+                  {...register("description")}
                 />
+                {errors.description && (
+                  <p className="text-red-500">{errors.description.message}</p>
+                )}
+              </div>
+              <div className="">
+                <Label htmlFor="team" className="block mb-1 text-gray-700">
+                  Team
+                </Label>
+                <Input
+                  type="text"
+                  id="team"
+                  className="w-full border rounded-md p-2"
+                  {...register("team")}
+                />
+                {errors.team && (
+                  <p className="text-red-500">{errors.team.message}</p>
+                )}
               </div>
               <div>
                 <Label htmlFor="startDate" className="block mb-1 text-gray-700">
@@ -94,9 +180,11 @@ const ProjectsPage: React.FC = () => {
                   type="date"
                   id="startDate"
                   className="w-full border rounded-md p-2"
-                  value={newProject.startDate}
-                  onChange={handleInputChange}
+                  {...register("startDate")}
                 />
+                {errors.startDate && (
+                  <p className="text-red-500">{errors.startDate.message}</p>
+                )}
               </div>
               <div>
                 <Label htmlFor="endDate" className="block mb-1 text-gray-700">
@@ -106,9 +194,11 @@ const ProjectsPage: React.FC = () => {
                   type="date"
                   id="endDate"
                   className="w-full border rounded-md p-2"
-                  value={newProject.endDate}
-                  onChange={handleInputChange}
+                  {...register("endDate")}
                 />
+                {errors.endDate && (
+                  <p className="text-red-500">{errors.endDate.message}</p>
+                )}
               </div>
               <Button
                 type="submit"
@@ -119,34 +209,6 @@ const ProjectsPage: React.FC = () => {
             </form>
           </DialogContent>
         </Dialog>
-        <ul className="space-y-4">
-          {projectList.map((project) => (
-            <li key={project.id} className="border p-4 rounded-md shadow-md">
-              <div className="flex justify-between items-start">
-                <div>
-                  <p className="font-semibold text-lg text-gray-800">
-                    Title:{project.title}
-                  </p>
-                  <p className="text-sm text-gray-600 mt-1">
-                    Des:{project.description}
-                  </p>
-                  <p className="text-sm text-green-500 mt-1">
-                    Start Date: {project.startDate}
-                  </p>
-                  <p className="text-sm text-red-500 mt-1">
-                    End Date: {project.endDate}
-                  </p>
-                </div>
-                <Button
-                  className="bg-white text-slate-600 hover:bg-red-400"
-                  onClick={() => handleDeleteProject(project.id)}
-                >
-                  <Trash2 />
-                </Button>
-              </div>
-            </li>
-          ))}
-        </ul>
       </div>
     </div>
   );

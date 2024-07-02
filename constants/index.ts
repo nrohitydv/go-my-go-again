@@ -160,6 +160,7 @@ export interface memberProps {
   memberSince: string;
   profilePic: string;
   description: string;
+  developerType: string;
 }
 export const members: memberProps[] = [
   {
@@ -168,6 +169,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar 2.png",
     description:
       "Phoenix Baker joined our community in February 2022. With a knack for creativity and innovation, Phoenix quickly became known for their ability to think outside the box. They are an active participant in discussions, often providing unique perspectives that inspire and challenge the group. Outside of our community, Phoenix enjoys painting and exploring new art forms.",
+    developerType: "Creative Developer",
   },
   {
     name: "Lana Steiner",
@@ -175,6 +177,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar (1).png",
     description:
       "Lana Steiner has been a member since January 2022. Lana brings a wealth of knowledge to our community, with a background in both science and literature. Her friendly demeanor and willingness to share insights make her a beloved member. In her free time, Lana enjoys reading historical novels and hiking in the mountains.",
+    developerType: "Data Scientist",
   },
   {
     name: "Demi Wilkinson",
@@ -182,6 +185,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar (2).png",
     description:
       "Demi Wilkinson became part of our group in March 2022. Demi is known for their analytical mind and problem-solving abilities. They have a talent for breaking down complex issues and presenting clear, actionable solutions. Demi is also an avid chess player and enjoys participating in local tournaments.",
+    developerType: "Backend Developer",
   },
   {
     name: "Candice Wu",
@@ -189,6 +193,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar (3).png",
     description:
       "Candice Wu joined us in February 2022. She is renowned for her creative ideas and supportive nature, always ready to assist fellow members with her extensive knowledge in digital marketing. Candice has a passion for baking and often brings her delicious homemade treats to community events.",
+    developerType: "Digital Marketing ",
   },
   {
     name: "Natali Craig",
@@ -196,6 +201,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar (4).png",
     description:
       "Natali Craig has been with us since March 2022. Her enthusiasm and expertise in project management have significantly benefited our community. Natali is known for her ability to keep projects on track and motivate team members. She enjoys traveling and has visited over 20 countries, always bringing back interesting stories and souvenirs.",
+    developerType: "Project Manager",
   },
   {
     name: "Orlando Diggs",
@@ -203,6 +209,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar (5).png",
     description:
       "Orlando Diggs joined in April 2022. Orlando's problem-solving skills and positive attitude are well appreciated in our community. He has a background in software development and often shares his technical knowledge with others. In his spare time, Orlando enjoys playing basketball and volunteering at local coding workshops.",
+    developerType: "Software Developer",
   },
   {
     name: "Drew Cano",
@@ -210,6 +217,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar (6).png",
     description:
       "Drew Cano has been a member since April 2022. Known for their analytical mind and engaging personality, Drew is a valuable asset to our community. They excel in data analysis and are always ready to lend a helping hand. Drew enjoys writing poetry and has a collection of poems published in various literary magazines.",
+    developerType: "Data Analyst",
   },
   {
     name: "Kate Morrison",
@@ -217,6 +225,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar (7).png",
     description:
       "Kate Morrison, who joined in January 2022, is dedicated and thoughtful, consistently enriching our community's experience. With a background in education, Kate is adept at facilitating learning and growth among members. She loves gardening and has a beautiful collection of rare plants at home.",
+    developerType: "Quality Assurance",
   },
   {
     name: "Koray Okumus",
@@ -224,6 +233,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar (8).png",
     description:
       "Koray Okumus has been with us since February 2022. Admired for their innovative thinking and collaborative efforts, Koray often brings fresh ideas to the table. They have a background in engineering and enjoy working on DIY projects during weekends. Koray is also a passionate cyclist and participates in long-distance rides.",
+    developerType: "Hardware Engineer",
   },
   {
     name: "Ava Wright",
@@ -231,6 +241,7 @@ export const members: memberProps[] = [
     profilePic: "/Avatar (9).png",
     description:
       "Ava Wright joined our ranks in March 2022. Her enthusiasm and insightful input have quickly made her a favorite among members. Ava has a background in graphic design and often helps with visual projects. She loves photography and frequently organizes photo walks for the community.",
+    developerType: "Graphic Designer",
   },
 ];
 
@@ -276,5 +287,68 @@ export const invoices = [
     paymentStatus: "Unpaid",
     totalAmount: 300,
     paymentMethod: "Credit Card",
+  },
+];
+
+export interface projectsProps {
+  CompanyName: string;
+  logo: string;
+  ProjectName: string;
+  Description: string;
+  StartDate: Date;
+  EndDate: Date;
+  Budget: string;
+}
+
+export const projectDetails: projectsProps[] = [
+  {
+    CompanyName: "TechSolutions Inc.",
+    logo: "/1.svg",
+    ProjectName: "Cybersecurity Enhancement Program",
+    Description:
+      "This project aims to significantly improve the company's cybersecurity posture. It involves deploying advanced threat detection and prevention systems, such as Intrusion Detection Systems (IDS), Intrusion Prevention Systems (IPS), and Security Information and Event Management (SIEM) solutions. Additionally, the project will focus on conducting regular security audits and vulnerability assessments, implementing multi-factor authentication (MFA) across all systems, and developing a comprehensive incident response plan. Employee training sessions on cybersecurity best practices and phishing awareness will also be part of this initiative to ensure that the human element of security is addressed.",
+    StartDate: new Date("2023-08-01"),
+    EndDate: new Date("2024-07-31"),
+    Budget: "1,500,000",
+  },
+  {
+    CompanyName: "CloudWorks Ltd.",
+    logo: "/2.svg",
+    ProjectName: "Cloud Migration Project",
+    Description:
+      "This project involves migrating the company’s data, applications, and workloads to a cloud-based environment. The project will start with a thorough assessment of current IT infrastructure and applications to determine their cloud readiness. Following this, a detailed migration plan will be developed, outlining the sequence of moving services to the cloud with minimal downtime. The project will include setting up cloud storage solutions, configuring cloud security protocols, and ensuring compliance with industry standards. Post-migration, the project will focus on optimizing cloud performance, cost management, and training staff on managing and operating in the new cloud environment.",
+    StartDate: new Date("2024-01-15"),
+    EndDate: new Date("2024-12-31"),
+    Budget: "2,200,000",
+  },
+  {
+    CompanyName: "Innovative AI Corp.",
+    logo: "/3.svg",
+    ProjectName: "AI-Powered Customer Support System",
+    Description:
+      "This project aims to enhance customer support through the integration of AI technologies. The project will develop and deploy AI-driven chatbots and virtual assistants capable of handling common customer queries and tasks such as order tracking, troubleshooting, and FAQs. These AI tools will be integrated with the company’s CRM system to provide personalized support based on customer history and preferences. The project will also involve the development of machine learning models to analyze customer interactions and improve the AI's performance over time. Additionally, a comprehensive support portal will be created, offering a blend of automated and human-assisted support.",
+    StartDate: new Date("2024-03-01"),
+    EndDate: new Date("2025-02-28"),
+    Budget: "1,000,000",
+  },
+  {
+    CompanyName: "Enterprise Solutions Group",
+    logo: "/4.svg",
+    ProjectName: "Enterprise Resource Planning (ERP) Implementation",
+    Description:
+      "The goal of this project is to deploy a robust ERP system that integrates various business processes into a single cohesive platform. This system will cover areas such as finance, human resources, procurement, and supply chain management. The project will start with the selection of a suitable ERP solution, followed by a detailed requirements analysis and business process reengineering. Customization and configuration of the ERP software to match the company’s specific needs will be undertaken. The implementation will also include data migration, user training, and a phased rollout strategy to ensure smooth transition and minimal disruption to business operations.",
+    StartDate: new Date("2023-07-01"),
+    EndDate: new Date("2025-06-30"),
+    Budget: "4,000,000",
+  },
+  {
+    CompanyName: "E-Commerce Innovators LLC",
+    logo: "/5.svg",
+    ProjectName: "Mobile App Development for E-Commerce",
+    Description:
+      "This project focuses on developing a mobile application to enhance the company's e-commerce platform. The app will feature a user-friendly interface, personalized product recommendations based on user behavior and preferences, secure and seamless payment options, and real-time order tracking. The development process will involve user research and prototyping to ensure a customer-centric design. Additionally, the app will include features such as push notifications for promotions, a loyalty program, and integration with social media platforms for easy sharing and marketing. The project will also include rigorous testing for performance, security, and usability before the official launch.",
+    StartDate: new Date("2023-09-01"),
+    EndDate: new Date("2024-08-31"),
+    Budget: "1,800,000",
   },
 ];

@@ -7,11 +7,16 @@ import { toast } from "@/components/ui/use-toast";
 import React, { FormEvent, useState } from "react";
 
 const SupportPage = () => {
+  const [formState, setFormState] = useState({
+    email: "",
+    problem: "",
+  });
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
     toast({
       description: "Thank you for your feedback",
     });
+    setFormState({ email: "", problem: "" });
   };
 
   return (
@@ -21,11 +26,22 @@ const SupportPage = () => {
         <Label htmlFor="email" className="font-bold text-slate-600">
           Your email:
         </Label>
-        <Input type="email" id="email" name="email" required />
+        <Input
+          type="email"
+          id="email"
+          name="email"
+          required
+          value={formState.email}
+        />
         <Label htmlFor="problem" className="font-bold text-slate-600">
           Brief about Problem:
         </Label>
-        <Textarea id="problem" required className="" />
+        <Textarea
+          id="problem"
+          required
+          className=""
+          value={formState.problem}
+        />
         <Button
           className="w-full bg-blue-500 text-white hover:bg-blue-600 py-2 px-4 rounded-md mt-[20px]"
           type="submit"
