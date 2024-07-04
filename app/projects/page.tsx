@@ -11,6 +11,8 @@ import { Separator } from "@radix-ui/react-separator";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { DialogOpener } from "@/lib/store/dialog-slice";
 
 const formSchema = z.object({
   title: z.string().min(2, {
@@ -40,7 +42,8 @@ const ProjectsPage: React.FC = () => {
   } = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
   });
-
+  const dispatch = useAppDispatch();
+  const dialogTrigger = useAppSelector((state) => state.dialog.dialogOpen);
   const [projectList, setProjectList] = useState<Project[]>(() => {
     const localValue = localStorage.getItem("ITEMS");
     if (localValue === null) return [];
@@ -62,6 +65,7 @@ const ProjectsPage: React.FC = () => {
     toast({
       description: <p>Form submitted successfully!!!</p>,
     });
+    dispatch(DialogOpener());
   };
 
   const handleDeleteProject = (id: string) => {
@@ -117,7 +121,10 @@ const ProjectsPage: React.FC = () => {
             </li>
           ))}
         </ul>
-        <Dialog>
+        <Dialog
+          open={dialogTrigger}
+          onOpenChange={() => dispatch(DialogOpener())}
+        >
           <DialogTrigger className="ml-[500px]">
             <Button className="bg-blue-500 text-white hover:bg-blue-600 border py-2 px-2 rounded-xl">
               <Plus />

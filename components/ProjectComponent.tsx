@@ -7,31 +7,28 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { useAppSelector } from "@/lib/hooks";
 
 import { Avatar, AvatarImage } from "@/components/ui/avatar";
-import { members, projectDetails, projectsProps } from "@/constants";
-import {
-  Bell,
-  CalendarDays,
-  Clock,
-  EllipsisVertical,
-  Plus,
-  PlusIcon,
-} from "lucide-react";
+import { projectDetails, projectsProps } from "@/constants";
+import { CalendarDays, Clock, EllipsisVertical, MoveRight } from "lucide-react";
 import Image from "next/image";
-import React, { FormEvent, useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import React, { useState } from "react";
+
 import { Separator } from "@/components/ui/separator";
+import ChecklistItem from "./ChecklistItem";
+import CommentPage from "./CommentPage";
+import { RootState } from "@/lib/store";
+import ProjectAdder from "./ProjectAdder";
 
 const ProjectComponent = () => {
   const [showProject, setShowProject] = useState(projectDetails[0]);
   const handleShowProject = (project: projectsProps) => {
     setShowProject(project);
   };
-
+  const commentList = useAppSelector(
+    (state: RootState) => state.comment.comments
+  );
   const calculateDaysLeft = (endDate: Date): number => {
     const currentDate = new Date();
     const end = new Date(endDate);
@@ -39,17 +36,14 @@ const ProjectComponent = () => {
     const daysLeft = Math.ceil(timeDifference / (1000 * 60 * 60 * 24));
     return daysLeft > 0 ? daysLeft : 0;
   };
-  const checklistAdder = () => {};
-  const handleAdd = (e: FormEvent) => {
-    e.preventDefault();
-  };
+
   return (
-    <div className="flex">
-      <ul className="w-[300px] border-r">
+    <div className="flex sm:flex-row flex-col">
+      <ul className="sm:w-[300px] w-full sm:border-r">
         <div className="p-3">
           <SearchField />
         </div>
-
+        {/* <ProjectPageView /> */}
         <div className="">
           {projectDetails.map((project) => (
             <li
@@ -116,9 +110,13 @@ const ProjectComponent = () => {
             </li>
           ))}
         </div>
+        <div className="">
+          <ProjectAdder />
+        </div>
       </ul>
+
       <div>
-        <Card className="h-full w-[550px] p-2 border-l-0 pt-3 border-t-0">
+        <Card className="h-full sm:w-[550px] w-full p-2 sm:border-l-0 pt-3 sm:border-t-0 sm:border-r border-r-0  ">
           <CardContent className="space-y-5">
             <div className="flex justify-between">
               <div className="flex space-x-2">
@@ -177,35 +175,23 @@ const ProjectComponent = () => {
               </div>
             </div>
             <p className="text-sm text-slate-500">{showProject.Description}</p>
-            <div className="">
-              <p className="text-sm/md text-slate-600">Checklist</p>
+            <ChecklistItem />
 
-              <Dialog>
-                <DialogTrigger>
-                  <Button className="text-blue-700 bg-white hover:bg-white items-center gap-2 p-0">
-                    <Plus size={15} /> Add checklist item
-                  </Button>
-                </DialogTrigger>
-                <DialogContent>
-                  <form onSubmit={handleAdd}>
-                    <Input type="text" required />
-                    <Button
-                      className="bg-blue-700 text-white hover:bg-blue-600 mt-2 ml-[400px]"
-                      type="submit"
-                    >
-                      <PlusIcon />
-                    </Button>
-                  </form>
-                </DialogContent>
-              </Dialog>
-            </div>
             <div className="">
               <p className="text-sm/md text-slate-600">Comments</p>
+              <ul className="p-2">
+                {commentList.map((c) => (
+                  <li key={c.id} className="p-1">
+                    <p className="text-sm text-slate-600 inline-flex items-center gap-2">
+                      <MoveRight />
+                      {c.comment}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+
               <Separator orientation="horizontal" />
-              <Textarea className="mt-2" />
-              <Button className="bg-blue-700 text-white hover:bg-blue-600 mt-2 rounded-lg">
-                Add comment
-              </Button>
+              <CommentPage />
             </div>
           </CardContent>
         </Card>

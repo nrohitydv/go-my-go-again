@@ -21,9 +21,11 @@ import ProjectComponent from "@/components/ProjectComponent";
 const ProjectTrialPage = () => {
   return (
     <div className="space-y-2">
-      <div className="flex justify-between border-b p-2">
+      <div className="flex justify-between items-center border-b p-2">
         <h1 className="text-slate-700 font-bold">Project Page</h1>
-        <SearchField />
+        <div className="hidden sm:block">
+          <SearchField />
+        </div>
         <div className="flex items-center gap-5 cursor-pointer">
           <Bell />
           <Avatar>
@@ -36,13 +38,13 @@ const ProjectTrialPage = () => {
           </Avatar>
         </div>
       </div>
-      <div className="flex">
+      <div className="flex sm:flex-row flex-col">
         <ProjectComponent />
 
         <div className="">
-          <div className="ml-5">
+          <div className="ml-5 mt-2">
             <Select>
-              <SelectTrigger className="w-[180px] border-none hover:bg-slate-200">
+              <SelectTrigger className="sm:w-[180px] w-full border-none hover:bg-slate-200">
                 <SelectValue placeholder="Progress" />
               </SelectTrigger>
               <SelectContent>
@@ -52,13 +54,13 @@ const ProjectTrialPage = () => {
               </SelectContent>
             </Select>
           </div>
-          <ul className="space-y-3 mt-[20px] ml-5">
+          <ul className="space-y-3 mt-[20px] ml-5 flex sm:flex-col flex-col">
             <p>Members</p>
             {members.map((member) => (
               <Popover key={member.name}>
                 <PopoverTrigger>
                   <li className="cursor-pointer">
-                    <div className="flex items-center justify-start gap-4">
+                    <div className="flex  items-center justify-start gap-4">
                       <Image
                         src={member.profilePic}
                         alt={member.name}
@@ -77,7 +79,7 @@ const ProjectTrialPage = () => {
                     </div>
                   </li>
                 </PopoverTrigger>
-                <PopoverContent>
+                <PopoverContent className="">
                   <div className="flex items-center gap-4 mb-4">
                     <Image
                       src={member.profilePic}

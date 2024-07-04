@@ -10,6 +10,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm, Controller } from "react-hook-form";
 import { z } from "zod";
 import { toast } from "@/components/ui/use-toast";
+import { DialogOpener } from "@/lib/store/dialog-slice";
 import {
   Select,
   SelectContent,
@@ -17,7 +18,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 const taskSchema = z.object({
   project: z.string({
     required_error: "Select any project!!!",
@@ -47,7 +48,9 @@ const TasksPage = () => {
   } = useForm<z.infer<typeof taskSchema>>({
     resolver: zodResolver(taskSchema),
   });
-
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const dispatch = useAppDispatch();
+  const dialogTrigger = useAppSelector((state) => state.dialog.dialogOpen);
   const [tasksList, setTasksList] = useState<Task[]>(() => {
     const localTask = localStorage.getItem("TASKS");
     if (localTask === null) return [];
@@ -69,6 +72,7 @@ const TasksPage = () => {
     toast({
       description: <p>Form submitted successfully!!!</p>,
     });
+    dispatch(DialogOpener());
   };
 
   const handleDeleteTasks = (id: string) => {
@@ -118,7 +122,10 @@ const TasksPage = () => {
             </li>
           ))}
         </ul>
-        <Dialog>
+        <Dialog
+          open={dialogTrigger}
+          onOpenChange={() => dispatch(DialogOpener())}
+        >
           <DialogTrigger className="ml-[500px]">
             <Button className="bg-blue-500 text-white hover:bg-blue-600 border py-2 px-2 rounded-xl">
               <Plus />
@@ -212,6 +219,7 @@ const TasksPage = () => {
                   <p className="text-red-600">{errors.assignedTo.message}</p>
                 )}
               </div>
+
               <Button
                 type="submit"
                 className="w-full bg-blue-500 text-white hover:bg-blue-600 py-2 px-4 rounded-md"
